@@ -1,0 +1,16 @@
+version: '3'
+services:
+  redis:
+    container_name: redis-container
+    image: redis
+    ports:
+      - "6379:6379"
+  api:
+    container_name: customers-management
+    build: .
+    restart: always
+    image: customers-management
+    ports:
+      - "3333:3333"
+    links:
+      - redis
