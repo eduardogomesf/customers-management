@@ -1,4 +1,5 @@
-import { BadGatewayException, NotFoundException } from '@nestjs/common';
+import { NotFoundException } from '@nestjs/common';
+import { ServiceUnavailableException } from '../../src/exceptions/http/service-unavailable.exception';
 import { GetCustomerByIdUseCase } from '../../src/useCases/get-customer-by-id.use-case';
 import { GetCustomerByIdRepository } from '../../src/useCases/protocols/get-customer-by-id.repository';
 import { GetCustomerByIdRepositoryStub } from './stubs/get-customer-by-id.repository.stub';
@@ -50,9 +51,7 @@ describe('GetCustomerByIdUseCase', () => {
     const promise = getCustomerByIdUseCase.get('any-id')
 
     await expect(promise).rejects.toThrowError(
-      new BadGatewayException({
-        error: 'Service unavailable'
-      })
+      new ServiceUnavailableException()
     )
   })
 });

@@ -1,9 +1,6 @@
-import {
-  BadRequestException,
-  Injectable,
-  BadGatewayException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateCustomerDto } from '../dtos/create-customer.dto';
+import { ServiceUnavailableException } from '../exceptions/http/service-unavailable.exception';
 import { Customer } from '../models/customer';
 import { CreateCustomerRepository } from './protocols/create-customer.repository';
 
@@ -25,9 +22,7 @@ export class CreateCustomerUseCase {
     const customer = new Customer(dto);
 
     await this.createCustomerRepository.create(customer).catch(() => {
-      throw new BadGatewayException({
-        error: 'Service unavailable',
-      });
+      throw new ServiceUnavailableException()
     });
 
     return customer;

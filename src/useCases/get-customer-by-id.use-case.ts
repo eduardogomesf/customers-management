@@ -1,4 +1,5 @@
-import { BadGatewayException, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { ServiceUnavailableException } from '../exceptions/http/service-unavailable.exception';
 import { Customer } from '../models/customer';
 import { GetCustomerByIdRepository } from './protocols/get-customer-by-id.repository';
 
@@ -10,9 +11,7 @@ export class GetCustomerByIdUseCase {
 
   async get(customerId: string): Promise<Customer> {
     const customer = await this.getCustomerByIdRepository.getById(customerId).catch(() => {
-      throw new BadGatewayException({
-        error: 'Service unavailable',
-      });
+      throw new ServiceUnavailableException()
     });
 
 

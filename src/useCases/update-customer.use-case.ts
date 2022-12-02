@@ -1,4 +1,4 @@
-import { BadGatewayException, BadRequestException, ConflictException, Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { UpdateCustomerDto } from "../dtos/update-customer.dto";
 import { ServiceUnavailableException } from "../exceptions/http/service-unavailable.exception";
 import { Customer } from "../models/customer";

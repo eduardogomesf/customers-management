@@ -1,4 +1,5 @@
-import { BadGatewayException, BadRequestException } from '@nestjs/common';
+import { BadRequestException } from '@nestjs/common';
+import { ServiceUnavailableException } from '../../src/exceptions/http/service-unavailable.exception';
 import { CreateCustomerUseCase } from '../../src/useCases/create-customer.use-case';
 import { CreateCustomerRepository } from '../../src/useCases/protocols/create-customer.repository';
 import { CreateCustomerRepositoryStub } from './stubs/create-customer.repository.stub';
@@ -93,9 +94,7 @@ describe('CreateCustomerUseCase', () => {
     const promise = createCustomerUseCase.create(payload);
 
     await expect(promise).rejects.toThrowError(
-      new BadGatewayException({
-        error: 'Service unavailable',
-      }),
+      new ServiceUnavailableException()
     );
   });
 });
