@@ -88,11 +88,7 @@ describe('CreateCustomerUseCase', () => {
       document: 12141592452,
     };
 
-    createCustomerRepositoryStub.create = jest.fn().mockImplementation(() => {
-      throw new BadGatewayException({
-        error: 'Service unavailable',
-      });
-    });
+    jest.spyOn(createCustomerRepositoryStub, 'create').mockReturnValue(Promise.reject(new Error('any_error')))
 
     const promise = createCustomerUseCase.create(payload);
 
