@@ -1,5 +1,6 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException } from "@nestjs/common";
+import { BadRequestException, ConflictException, Injectable } from "@nestjs/common";
 import { UpdateCustomerDto } from "../dtos/update-customer.dto";
+import { CustomerNotFoundException } from "../exceptions/http/customer-not-found.exception";
 import { ServiceUnavailableException } from "../exceptions/http/service-unavailable.exception";
 import { Customer } from "../models/customer";
 import { GetCustomerByIdRepository } from "./protocols/get-customer-by-id.repository";
@@ -25,9 +26,7 @@ export class UpdateCustomerUseCase {
     })
 
     if (!customerById) {
-      throw new NotFoundException({
-        error: 'Customer not found'
-      })
+      throw new CustomerNotFoundException()
     }
 
     const customerByNewId = await this.getCustomerByIdRepository.getById(updateData.id).catch(() => {

@@ -1,4 +1,5 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { CustomerNotFoundException } from '../exceptions/http/customer-not-found.exception';
 import { ServiceUnavailableException } from '../exceptions/http/service-unavailable.exception';
 import { Customer } from '../models/customer';
 import { GetCustomerByIdRepository } from './protocols/get-customer-by-id.repository';
@@ -16,9 +17,7 @@ export class GetCustomerByIdUseCase {
 
 
     if (!customer) {
-      throw new NotFoundException({
-        error: 'Customer not found',
-      });
+      throw new CustomerNotFoundException()
     }
 
     return customer;

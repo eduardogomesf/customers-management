@@ -1,4 +1,5 @@
-import { BadRequestException, ConflictException, NotFoundException } from "@nestjs/common"
+import { BadRequestException, ConflictException } from "@nestjs/common"
+import { CustomerNotFoundException } from "../../src/exceptions/http/customer-not-found.exception"
 import { ServiceUnavailableException } from "../../src/exceptions/http/service-unavailable.exception"
 import { GetCustomerByIdRepository } from "../../src/useCases/protocols/get-customer-by-id.repository"
 import { UpdateCustomerRepository } from "../../src/useCases/protocols/update-customer-repository"
@@ -114,9 +115,7 @@ describe('UpdaterCustomerUseCase', () => {
     const promise = updateCustomerUseCase.update('any-id', payload)
 
     await expect(promise).rejects.toThrowError(
-      new NotFoundException({
-        error: 'Customer not found'
-      })
+      new CustomerNotFoundException()
     )
   })
 

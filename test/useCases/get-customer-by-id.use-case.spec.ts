@@ -1,4 +1,4 @@
-import { NotFoundException } from '@nestjs/common';
+import { CustomerNotFoundException } from '../../src/exceptions/http/customer-not-found.exception';
 import { ServiceUnavailableException } from '../../src/exceptions/http/service-unavailable.exception';
 import { GetCustomerByIdUseCase } from '../../src/useCases/get-customer-by-id.use-case';
 import { GetCustomerByIdRepository } from '../../src/useCases/protocols/get-customer-by-id.repository';
@@ -39,9 +39,7 @@ describe('GetCustomerByIdUseCase', () => {
     const promise = getCustomerByIdUseCase.get('any-id')
 
     await expect(promise).rejects.toThrowError(
-      new NotFoundException({
-        error: 'Customer not found'
-      })
+      new CustomerNotFoundException()
     )
   })
 
