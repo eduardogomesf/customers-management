@@ -156,7 +156,7 @@ describe('UpdaterCustomerUseCase', () => {
 
     await expect(promise).rejects.toThrowError(
       new BadRequestException({
-        error: 'Invalid params'
+        error: 'Missing fields'
       })
     )
   })
@@ -171,7 +171,7 @@ describe('UpdaterCustomerUseCase', () => {
 
     await expect(promise).rejects.toThrowError(
       new BadRequestException({
-        error: 'Invalid params'
+        error: 'Missing fields'
       })
     )
   })
@@ -186,7 +186,7 @@ describe('UpdaterCustomerUseCase', () => {
 
     await expect(promise).rejects.toThrowError(
       new BadRequestException({
-        error: 'Invalid params'
+        error: 'Missing fields'
       })
     )
   })

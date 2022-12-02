@@ -17,7 +17,7 @@ export class UpdateCustomerUseCase {
   async update(customerId: string, updateData: UpdateCustomerDto): Promise<Customer> {
     if (!updateData.id || !updateData.document || !updateData.name) {
       throw new BadRequestException({
-        error: 'Invalid params'
+        error: 'Missing fields'
       })
     }
 

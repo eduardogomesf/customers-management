@@ -64,7 +64,7 @@ describe('CreateCustomerUseCase', () => {
 
     await expect(promise).rejects.toThrowError(
       new BadRequestException({
-        error: 'Invalid params',
+        error: 'Missing fields',
       }),
     );
   });
@@ -78,8 +78,8 @@ describe('CreateCustomerUseCase', () => {
 
     await expect(promise).rejects.toThrowError(
       new BadRequestException({
-        error: 'Invalid params',
-      }),
+        error: 'Missing fields'
+      })
     );
   });
 

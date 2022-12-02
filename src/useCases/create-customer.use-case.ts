@@ -15,8 +15,8 @@ export class CreateCustomerUseCase {
 
     if (!document || !name) {
       throw new BadRequestException({
-        error: 'Invalid params',
-      });
+        error: 'Missing fields'
+      })
     }
 
     const customer = new Customer(dto);
