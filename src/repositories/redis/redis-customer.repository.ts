@@ -3,8 +3,9 @@ import Redis from 'ioredis';
 import { Customer } from '../../models/customer';
 import { CreateCustomerRepository } from '../../useCases/protocols/create-customer.repository';
 import { GetCustomerByIdRepository } from '../../useCases/protocols/get-customer-by-id.repository';
+import { UpdateCustomerData, UpdateCustomerRepository } from '../../useCases/protocols/update-customer-repository';
 
-export class RedisCustomerRepository implements CreateCustomerRepository, GetCustomerByIdRepository {
+export class RedisCustomerRepository implements CreateCustomerRepository, GetCustomerByIdRepository, UpdateCustomerRepository {
   private repository: Redis;
 
   private keyPrefix = 'customer:';
@@ -26,5 +27,19 @@ export class RedisCustomerRepository implements CreateCustomerRepository, GetCus
       `${this.keyPrefix}${customerId}`,
     );
     return stringifiedCustomer ? JSON.parse(stringifiedCustomer) : null;
+  }
+
+  async updateById(customerId: string, data: UpdateCustomerData): Promise<Customer> {
+    await this.repository.set(
+      `${this.keyPrefix}${customerId}`,
+      ""
+    );
+
+    await this.repository.set(
+      `${this.keyPrefix}${data.id}`,
+      JSON.stringify(data)
+    );
+
+    return new Customer(data)
   }
 }

@@ -1,6 +1,6 @@
 import { Customer } from "../../models/customer";
 
-type UpdateCustomerData = {
+export type UpdateCustomerData = {
   id: string
   document: number
   name: string
