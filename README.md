@@ -14,5 +14,5 @@ API Rest feita em Nestjs para gerenciamento de clientes
 3. Criar um arquivo .env na raiz do projeto e utilizar o arquivo .env.example como base para preencher as variáveis de ambiente
 3. Inicializar os containers utilizando o comando abaixo
 ```
-npm run start:prod
+docker-compose up --build -t
 ```
