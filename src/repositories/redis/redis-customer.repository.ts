@@ -1,4 +1,5 @@
 import Redis from 'ioredis';
+import { CONFIGS } from '../../configs/envs';
 
 import { Customer } from '../../models/customer';
 import { CreateCustomerRepository } from '../../useCases/protocols/create-customer.repository';
@@ -11,7 +12,9 @@ export class RedisCustomerRepository implements CreateCustomerRepository, GetCus
   private keyPrefix = 'customer:';
 
   constructor() {
-    this.repository = new Redis();
+    this.repository = new Redis({
+      host: CONFIGS.REDIS.HOST
+    });
   }
 
   async create(customer: Customer): Promise<void> {

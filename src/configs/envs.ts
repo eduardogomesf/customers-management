@@ -11,5 +11,8 @@ export const CONFIGS = {
     REALM: process.env.KEYCLOAK_REALM,
     CLIENT_ID: process.env.KEYCLOAK_CLIENT_ID,
     SECRET: process.env.KEYCLOAK_SECRET
+  },
+  REDIS: {
+    HOST: process.env.REDIS_HOST
   }
 } as const
