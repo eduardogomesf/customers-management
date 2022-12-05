@@ -17,21 +17,25 @@ API Rest feita em Nestjs para gerenciamento de clientes
 ### Executando com o Docker
 1. Ainda na raiz do projeto, iniciar os containers com o comando abaixo
 ```
-docker-compose up --build -d
+docker-compose up -d
 ```
 2. Pronto! Aplicação estará executando e pronta para receber requisições.
 
 ### Executando sem o docker
-1. Ainda na raiz do projeto, instalar as dependências do projeto
+1. Ainda na raiz do projeto, rodar o comando abaixo para garantir que os containes não estão mais em execução
+```
+  docker-compose down
+```
+2. Instalar as dependências do projeto
 ```
   npm install
 ```
-2. Alterar o valor da env ```REDIS_HOST``` para localhost no arquivo ```.env```
+3. Alterar o valor da env ```REDIS_HOST``` para localhost no arquivo ```.env```
 ```
 REDIS_HOST=localhost
 ```
-3. Rodar o seguinte comando
+4. Rodar o seguinte comando
 ```
   docker-compose up -d && npm run start:dev
 ```
-4. Pronto! Aplicação estará executando e pronta para receber requisições.
+5. Pronto! Aplicação estará executando e pronta para receber requisições.
