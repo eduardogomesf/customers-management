@@ -12,5 +12,12 @@ services:
     image: customers-management
     ports:
       - "3333:3333"
+    environment:
+      - APP_PORT=${APP_PORT}
+      - KEYCLOAK_AUTH_SERVER_URL=${KEYCLOAK_AUTH_SERVER_URL}
+      - KEYCLOAK_REALM=${KEYCLOAK_REALM}
+      - KEYCLOAK_CLIENT_ID=${KEYCLOAK_CLIENT_ID}
+      - KEYCLOAK_SECRET=${KEYCLOAK_SECRET}
+      - REDIS_HOST=${REDIS_HOST}
     links:
       - redis
