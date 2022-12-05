@@ -38,7 +38,7 @@ REDIS_HOST=localhost
 ```
   docker-compose up redis
 ```
-5. Iniciar aplicação utilizando o comando abaixo
+5. Iniciar a aplicação utilizando o comando abaixo
 ```
   npm run start:dev
 ```
