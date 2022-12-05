@@ -36,7 +36,7 @@ REDIS_HOST=localhost
 ```
 4. Iniciar o redis utilizando o comando abaixo
 ```
-  docker-compose up redis
+  docker-compose up redis -d
 ```
 5. Iniciar a aplicação utilizando o comando abaixo
 ```
