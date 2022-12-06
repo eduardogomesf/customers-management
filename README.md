@@ -15,7 +15,11 @@ API Rest feita em Nestjs para gerenciamento de clientes
 4. Preencha as variáveis que estão em branco no arquivo .env
 
 ### Executando com o Docker
-1. Ainda na raiz do projeto, iniciar os containers com o comando abaixo
+1. Alterar o valor da env ```REDIS_HOST``` para redis no arquivo ```.env```
+```
+REDIS_HOST=redis
+``` 
+2. Ainda na raiz do projeto, iniciar os containers com o comando abaixo
 ```
 docker-compose up -d
 ```
